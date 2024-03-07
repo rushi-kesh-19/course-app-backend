@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
 const adminS= new mongoose.Schema({
-    username: {type:String}, // {type:String} or String both fine
+    username: {type:String}, // {type:String} or String both are fine
     password: String
     });
     const userS= new mongoose.Schema({
