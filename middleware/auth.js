@@ -1,8 +1,8 @@
-import jwt from 'jsonwebtoken';
-export const secretKey = "superS3cr3t1";
-import { Request, Response, NextFunction } from 'express';
+const jwt = require('jsonwebtoken');
+const secretKey  = "superS3cr3t1";
+const { Request, Response, NextFunction } = require('express');
 
-export const authenticateJwt = (req, res, next) => {
+const authenticateJwt = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (authHeader) {
       const token = authHeader.split(' ')[1];
@@ -10,10 +10,10 @@ export const authenticateJwt = (req, res, next) => {
         if (err) {
           return res.sendStatus(403);
         }
-        if(!user){
-          res.sendStatus(403)
+        if (!user) {
+          res.sendStatus(403);
         }
-        if(typeof user=== 'string'){
+        if (typeof user === 'string') {
           res.sendStatus(403);
         }
         req.user = user;
@@ -22,4 +22,6 @@ export const authenticateJwt = (req, res, next) => {
     } else {
       res.sendStatus(401);
     }
-  };
+};
+
+module.exports = {authenticateJwt, secretKey};
